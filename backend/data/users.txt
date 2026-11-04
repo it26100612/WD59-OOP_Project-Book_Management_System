@@ -1,0 +1,24 @@
+[
+  {
+    "id": "USR-1001",
+    "name": "Demo Admin",
+    "email": "admin@example.com",
+    "phone": "0000000000",
+    "role": "Admin",
+    "status": "Active",
+    "address": "Demo Address",
+    "registeredDate": "2026-01-15",
+    "privilegeLevel": 2
+  },
+  {
+    "id": "USR-0861",
+    "name": "Demo Customer",
+    "email": "customer@example.com",
+    "phone": "0000000000",
+    "role": "Customer",
+    "status": "Active",
+    "address": "Demo Address",
+    "registeredDate": "2026-10-27",
+    "loyaltyPoints": 0
+  }
+]
