@@ -1,0 +1,9 @@
+[ {
+  "id" : "REV-64426",
+  "bookId" : "BK-1002",
+  "bookTitle" : "The Hobbit",
+  "customerName" : "Demo Customer",
+  "rating" : 4,
+  "comment" : "good",
+  "date" : "2026-10-27"
+} ]
