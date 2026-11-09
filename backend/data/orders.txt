@@ -1,0 +1,25 @@
+[
+  {
+    "id": "ORD-0001",
+    "customerId": "USR-0001",
+    "customerName": "Demo Customer",
+    "email": "demo@example.com",
+    "phone": "0770000000",
+    "date": "2026-10-27",
+    "deliveryAddress": "Demo Address, Colombo",
+    "notes": "Standard doorstep delivery requested.",
+    "items": [
+      {
+        "bookId": "BK-6582",
+        "title": "Sigiri Kodev | සීගිරි කොදෙව්",
+        "price": 750.0,
+        "quantity": 1,
+        "cover": ""
+      }
+    ],
+    "subtotal": 750.0,
+    "shippingFee": 350.0,
+    "total": 1100.0,
+    "status": "Pending"
+  }
+]
