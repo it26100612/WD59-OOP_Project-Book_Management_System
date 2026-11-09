@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Books — BookNest</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar text-center">
+    <div class="container d-flex justify-content-center align-items-center">
+     
+      <span class="mx-auto mx-md-0">
+        <i class="bi bi-truck me-1"></i> Free delivery within Colombo on orders over LKR 10,000! 
+      </span>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-booknest">
+    <div class="container">
+      <a class="navbar-brand-booknest" href="index.html">
+        <div class="brand-icon-box">
+          <i class="bi bi-book-half"></i>
+        </div>
+        <span>BookNest</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="books.html">Browse Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">My Profile</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="cart.html" class="btn btn-outline-custom btn-sm-custom cart-nav-badge position-relative" title="Shopping Cart">
+            <i class="bi bi-cart3 fs-6"></i>
+            <span class="d-none d-sm-inline ms-1">Cart</span>
+            <span id="nav-cart-count" class="cart-count-pill" style="display:none;">0</span>
+          </a>
+
+          <div id="nav-auth-container">
+            <!-- Dynamic User / Login -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+      <!-- Breadcrumb & Page Header -->
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Browse Books</li>
+        </ol>
+      </nav>
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+        <div>
+          <h1 class="h2 mb-1">Browse All Books</h1>
+          <p class="text-muted mb-0">Discover our collection of academic textbooks, literature, technology guides, and fiction</p>
+        </div>
+        <div>
+          <span id="books-count-label" class="badge bg-primary-subtle text-primary fs-6 px-3 py-2">
+            Loading books...
+          </span>
+        </div>
+      </div>
+
+      
+<!-- Filter Controls Bar -->
+<div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 mb-4 bg-white book-filter-card">
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <i class="bi bi-sliders2 fs-5 text-primary"></i>
+    <h5 class="fw-bold mb-0">Filter Books</h5>
+  </div>
+
+  <div class="row g-3 align-items-end">
+    <!-- Search -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <label for="books-search-input" class="form-label small fw-bold">Search Books</label>
+      <div class="input-group">
+        <span class="input-group-text bg-light">
+          <i class="bi bi-search"></i>
+        </span>
+        <input
+          type="text"
+          id="books-search-input"
+          class="form-control"
+          placeholder="Title, author, or ISBN..."
+        >
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <label for="books-category-filter" class="form-label small fw-bold">Category</label>
+      <select id="books-category-filter" class="form-select">
+        <option value="All">All Categories</option>
+      </select>
+    </div>
+
+    <!-- Sort -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <label for="books-sort-select" class="form-label small fw-bold">Sort By</label>
+      <select id="books-sort-select" class="form-select">
+        <option value="featured">Featured / Default</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="title-az">Title: A → Z</option>
+        <option value="title-za">Title: Z → A</option>
+        <option value="rating">Customer Rating</option>
+      </select>
+    </div>
+
+    <!-- Price Range -->
+    <div class="col-12">
+      <div class="price-filter-panel">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <i class="bi bi-cash-coin text-primary fs-5"></i>
+          <h6 class="fw-bold mb-0">Price Range</h6>
+          <span class="text-muted small">(LKR)</span>
+        </div>
+
+        <div class="row g-3 align-items-end">
+          <div class="col-6 col-md-4">
+            <label for="books-min-price" class="form-label small">Minimum Price</label>
+            <input
+              type="number"
+              id="books-min-price"
+              class="form-control"
+              min="0"
+              placeholder="e.g. 1000"
+            >
+          </div>
+
+          <div class="col-6 col-md-4">
+            <label for="books-max-price" class="form-label small">Maximum Price</label>
+            <input
+              type="number"
+              id="books-max-price"
+              class="form-control"
+              min="0"
+              placeholder="e.g. 5000"
+            >
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="books-stock-filter"
+              >
+              <label class="form-check-label small" for="books-stock-filter">
+                In Stock Only
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="col-12">
+      <div class="d-flex flex-column flex-sm-row gap-2 justify-content-end">
+        <button id="books-clear-filters" type="button" class="btn btn-outline-secondary px-4">
+          <i class="bi bi-arrow-counterclockwise me-1"></i>
+          Reset Filters
+        </button>
+
+        <button id="books-apply-filters" type="button" class="btn btn-primary-custom px-4">
+          <i class="bi bi-funnel me-1"></i>
+          Apply Filters
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      
+      
+
+      <!-- Book Grid Container -->
+      <div class="row g-4" id="browse-books-grid">
+        <!-- Rendered by script.js -->
+      </div>
+
+      <!-- Empty State Container -->
+      <div id="books-empty-state" class="empty-state-card mt-4" style="display: none;">
+        <i class="bi bi-book text-muted empty-state-icon"></i>
+        <h4 class="fw-bold mb-2">No Books Found</h4>
+        <p class="text-muted mb-3">We couldn't find any books matching your search or filter criteria.</p>
+        <button onclick="document.getElementById('books-clear-filters').click();" class="btn btn-primary-custom">
+          <i class="bi bi-arrow-counterclockwise me-1"></i> Clear All Filters
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+ <!-- <footer class="footer-booknest">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 1rem;">
+              <i class="bi bi-book-half"></i>
+            </div>
+            <span class="text-white fw-bold fs-5">BookNest</span>
+          </div>
+          <p class="small text-secondary mb-3">
+            Your trusted university online bookstore. Thousands of books with door-to-door delivery across Sri Lanka.
+          </p>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="books.html">Browse Books</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      <div class="footer-bottom d-flex justify-content-between align-items-center">
+        <div>&copy; 2026 BookNest — Online Bookstore.</div>
+        
+      </div>
+    </div>
+  </footer>-->
+  
+<!-- BookNest Expanded Footer -->
+<footer class="footer-booknest footer-payment">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Brand and Contact -->
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon-box">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <span class="text-white fw-bold fs-4">BookNest</span>
+                </div>
+
+                <p class="footer-description">
+                    The online book store. Order your favorite
+                    books today and enjoy island-wide delivery.
+                </p>
+
+                <p class="footer-contact">
+                    <i class="bi bi-telephone-fill"></i>
+                    +94 78 9191010 
+                </p>
+                <p class="footer-contact">
+                    <i class="bi bi-envelope-fill"></i>
+                    support@booknest.lk
+                </p>
+                <p class="footer-contact">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    BookNest HQ, No. 120 Galle Road,
+                    Colombo 03, Sri Lanka
+                </p>
+
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-1 col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-6 col-lg-2 col-md-3">
+                <h5>Categories</h5>
+                <ul class="footer-links">
+                    <li><a href="books.html?category=Fiction">Fiction</a></li>
+                    <li><a href="books.html?category=Technology">Technology</a></li>
+                    <li><a href="books.html?category=Science">Science</a></li>
+                    <li><a href="books.html?category=Education">Education</a></li>
+                    <li><a href="books.html?category=Mystery">Mystery</a></li>
+                    <li><a href="books.html?category=Personal%20Development">Personal Development</a></li>
+                </ul>
+            </div>
+
+           <!-- Help and Information -->
+            <div class="col-6 col-lg-2 col-md-3">
+              <h5>Help &amp; Info</h5>
+              <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="orders.html">Track Orders</a></li>
+                <li><a href="delivery.html">Delivery Information</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms &amp; Conditions</a></li>
+              </ul>
+            </div>
+
+
+            <!-- Newsletter and Payment Methods -->
+            <div class="col-lg-4 col-md-6">
+                <h5>NEWSLETTER</h5>
+
+                <form class="footer-newsletter mb-4"
+                      onsubmit="event.preventDefault();">
+                    <input type="email"
+                           placeholder="Your Email Address"
+                           aria-label="Your Email Address"
+                           required>
+                    <button type="submit">SUBMIT</button>
+                </form>
+
+                <h5>SECURED PAYMENTS</h5>
+                
+                <div class="payment-logos">
+                  
+                  <div class="payment-logo"><img src="images/payments/helapay.png" alt="HelaPay"></div>
+                  <div class="payment-logo"><img src="images/payments/visa.png" alt="Visa"></div>
+                  <div class="payment-logo"><img src="images/payments/mastercard.png" alt="Mastercard"></div>
+                  <div class="payment-logo"><img src="images/payments/amex.png" alt="American Express"></div>
+                  <div class="payment-logo"><img src="images/payments/discover.png" alt="Discover"></div>
+                  <div class="payment-logo"><img src="images/payments/diners-club.png" alt="Diners Club"></div>
+                  <div class="payment-logo"><img src="images/payments/genie.png" alt="Genie"></div>
+                  <div class="payment-logo"><img src="images/payments/frimi.png" alt="FriMi"></div>
+                  <div class="payment-logo"><img src="images/payments/ezcash.png" alt="eZ Cash"></div>
+                  <div class="payment-logo"><img src="images/payments/mcash.png" alt="mCash"></div>
+                  <div class="payment-logo"><img src="images/payments/sampath-bank.png" alt="Sampath Bank"></div>
+                  <div class="payment-logo"><img src="images/payments/qplus.png" alt="Q+"></div>
+                  <div class="payment-logo"><img src="images/payments/ipay.png" alt="iPay"></div>
+                
+                
+                </div>
+
+
+                
+
+
+                
+
+
+              
+                   <p class="payment-security">
+                    <i class="bi bi-lock-fill"></i>
+                    Your payment information is secure.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+         <div class="footer-bottom d-flex flex-column
+            flex-md-row justify-content-between
+            align-items-center gap-3">
+            
+            <p class="mb-0">
+              &copy; 2026 <strong>BookNest</strong> —
+              Online Bookstore. All rights reserved.
+            </p>
+            
+            <div id="footer-auth-links" class="footer-bottom-links">
+              <a href="login.html">Sign In</a>
+              <span>|</span>
+              <a href="register.html">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+         
+
+        
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Data Engine & App Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
