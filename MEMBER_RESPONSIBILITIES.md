@@ -1,163 +1,172 @@
-# Member 5: Review Management & Static Information Pages
+# Member 2: Book Inventory Management
 
 **Course:** SE1020 Object Oriented Programming  
-**Module:** Customer Feedback, Review Moderation & Static Storefront Pages  
-**Role:** Backend Developer & Content/Reputation Specialist  
-**Assigned Directory:** `BookNest_FINAL_DISTRIBUTION/Member_5_Review_and_Static_Pages`  
+**Module:** Book Catalog & Inventory Management  
+**Role:** Backend Developer & Inventory Specialist  
+**Assigned Directory:** `BookNest_FINAL_DISTRIBUTION/Member_2_Book_Management`  
+# Member 4: Order Management, Shopping Cart & Checkout
+
+**Course:** SE1020 Object Oriented Programming  
+**Module:** Shopping Cart, Checkout & Order Processing Lifecycle  
+**Role:** Backend Developer & E-Commerce Transactions Specialist  
+**Assigned Directory:** `BookNest_FINAL_DISTRIBUTION/Member_4_Order_Management`  
 **Shared GenericDAO Coordinator:** Member 3  
-# Member 3: Category Management & Generic DAO Architecture
-
-**Course:** SE1020 Object Oriented Programming  
-**Module:** Category Taxonomy & Foundational Generic Persistence Architecture  
-**Role:** Core Architecture Lead & Taxonomy Specialist  
-**Assigned Directory:** `BookNest_FINAL_DISTRIBUTION/Member_3_Category_Management`  
-**Key Shared Asset Ownership:** Primary Owner and Custodian of `GenericDAO.java`  
 
 ---
 
 ## 1. Module Overview & Core Responsibilities
 
-Member 5 oversees customer reviews and ratings (1 to 5 stars), the calculation of aggregate book ratings, administrative review moderation, and the entire suite of informational static policy pages.
+Member 2 is responsible for managing the entire book catalog, stock levels, search and filtering mechanisms, book details presentation, and administrative book CRUD operations.
 
 ### Key Responsibilities:
-1. **Customer Review CRUD:** Allowing customers to post star ratings and text feedback on books.
-2. **Dynamic Rating Aggregation:** Recalculating average book ratings and review counts upon review creation or deletion.
-3. **Administrative Moderation:** Managing customer feedback on `admin/reviews.html` with inspection and deletion privileges.
-4. **Static Informational Pages:** Maintaining the five essential bookstore policy and company pages (`about.html`, `contact.html`, `delivery.html`, `privacy.html`, `terms.html`).
-5. **Plain-Text File Persistence:** Managing `backend/data/reviews.txt` using Jackson JSON file streaming.
-6. **Module-Specific Testing:** Executing and maintaining `backend/test-review-module.ps1` to verify review endpoints, rating updates, and static page existence.
+1. **Book Catalog CRUD:** Managing the lifecycle of books (create, read, update, delete).
+2. **Inventory Stock Management:** Providing methods for stock reduction (`reduceStock()`) and inventory replenishment.
+3. **Book Detail Interface:** Displaying book cover, metadata, price, ISBN, synopsis, and review aggregations.
+4. **Search & Category Filtering:** Assisting frontend filtering by genre, keyword, and price ranges.
+5. **Plain-Text File Persistence:** Managing `backend/data/books.txt` using Jackson JSON file streaming.
+6. **Module-Specific Testing:** Executing and maintaining `backend/test-book-module.ps1` to verify book endpoints, stock logic, and file storage.
 
 ---
 
-## 2. Master File Allocation for Member 5
+## 2. Master File Allocation for Member 2
 
 | File Relative Path | Type | Primary Role & Description |
 | :--- | :--- | :--- |
-| `backend/data/reviews.txt` | Data / JSON | Plain-text JSON data store containing persisted customer book reviews |
-| `backend/src/main/java/com/booknest/model/Review.java` | Java Model | Entity class modeling a review (`id`, `bookId`, `bookTitle`, `customerName`, `rating`, `comment`, `date`) |
-| `backend/src/main/java/com/booknest/dao/ReviewFileDAO.java` | Java DAO | Plain-text file data access object implementing `GenericDAO<Review, String>` with book filtering |
-| `backend/src/main/java/com/booknest/service/ReviewService.java` | Java Service | Business logic layer validating star bounds (1-5) and recalculating aggregate book ratings |
-| `backend/src/main/java/com/booknest/controller/ReviewController.java` | Java Controller | REST controller publishing endpoints under `/api/reviews/**` |
-| `BookNest/admin/reviews.html` | HTML Admin | Administrative review moderation interface with filter tabs, rating stars, and delete action |
-| `BookNest/about.html` | HTML Static | Company profile, bookstore mission statement, and core values |
-| `BookNest/contact.html` | HTML Static | Bookstore branch locations, phone numbers, email inquiry form, and working hours |
-| `BookNest/delivery.html` | HTML Static | Islandwide delivery rates, shipping policies, tracking guidelines, and estimated arrival times |
-| `BookNest/privacy.html` | HTML Static | Comprehensive privacy policy regarding user accounts, transactions, and data security |
-| `BookNest/terms.html` | HTML Static | Terms and conditions governing online ordering, returns, refunds, and user agreements |
-| `backend/test-review-module.ps1` | PowerShell | Automated module test suite testing reviews, rating calculation, and static page integrity |
-Member 3 holds a pivotal dual responsibility:
-1. **Architect of Generic Data Access:** Authoring, maintaining, and governing the `GenericDAO<T, ID>` interface that defines the data access standard implemented by all five persistent DAOs in the application.
-2. **Category Taxonomy Management:** Managing book categories/genres, category CRUD operations, taxonomy icons, and the administrative category management portal.
-3. **Plain-Text File Persistence:** Managing `backend/data/categories.txt` using Jackson JSON file streaming.
-4. **Module-Specific Testing:** Executing and maintaining `backend/test-category-module.ps1` to verify category endpoints, GenericDAO contract adherence, and file persistence.
+| `backend/data/books.txt` | Data / JSON | Plain-text JSON data store containing persisted Book inventory entities |
+| `backend/src/main/java/com/booknest/model/Book.java` | Java Model | Primary entity representing a book with fields (`id`, `title`, `author`, `category`, `isbn`, `price`, `quantity`, `rating`, `reviewsCount`, etc.) |
+| `backend/src/main/java/com/booknest/dao/BookFileDAO.java` | Java DAO | Plain-text file data access object implementing `GenericDAO<Book, String>` with auto-seeding capability |
+| `backend/src/main/java/com/booknest/service/BookService.java` | Java Service | Business logic layer handling book validations, stock checks, and search algorithms |
+| `backend/src/main/java/com/booknest/controller/BookController.java` | Java Controller | REST controller publishing endpoints under `/api/books/**` |
+| `BookNest/books.html` | HTML Frontend | Customer book catalog page featuring category pills, search input, and dynamic book cards |
+| `BookNest/book-details.html` | HTML Frontend | Book specifications page displaying high-resolution book details, stock availability, and review list |
+| `BookNest/admin/books.html` | HTML Admin | Administrative book management interface featuring modal forms for book creation, edit, and deletion |
+| `backend/test-book-module.ps1` | PowerShell | Automated module test suite testing book endpoints, price updates, and persistence |
+Member 4 is responsible for the entire e-commerce purchasing journey: managing shopping cart items, calculating totals and delivery fees, checkout form validation, placing orders, transitioning order statuses (Pending -> Processing -> Shipped -> Delivered -> Cancelled), and displaying customer order histories.
+
+### Key Responsibilities:
+1. **Shopping Cart Management:** Dynamic client-side quantity increments, item removal, and subtotal recalculation.
+2. **Checkout Flow & Delivery Address:** Capturing delivery address, phone number, customer notes, and payment mode simulation (Cash on Delivery).
+3. **Order Lifecycle & State Transitions:** Processing orders, generating unique IDs (`ORD-XXXX`), and managing administrative status transitions.
+4. **Inventory Stock Coordination:** Deducting stock levels for purchased items through Member 2's `BookFileDAO`.
+5. **Plain-Text File Persistence:** Managing `backend/data/orders.txt` using Jackson JSON file streaming.
+6. **Module-Specific Testing:** Executing and maintaining `backend/test-order-module.ps1` to verify order placement, status updates, and composition integrity.
 
 ---
 
-## 2. Master File Allocation for Member 3
+## 2. Master File Allocation for Member 4
 
 | File Relative Path | Type | Primary Role & Description |
 | :--- | :--- | :--- |
-| `backend/src/main/java/com/booknest/dao/GenericDAO.java` | Java Interface | Foundational Generic Data Access Object interface parameterized with `<T, ID>` |
-| `backend/data/categories.txt` | Data / JSON | Plain-text JSON data store containing persisted Category taxonomy entities |
-| `backend/src/main/java/com/booknest/model/Category.java` | Java Model | Entity class modeling a category (`id`, `name`, `description`, `icon`) |
-| `backend/src/main/java/com/booknest/dao/CategoryFileDAO.java` | Java DAO | Plain-text file data access object implementing `GenericDAO<Category, String>` |
-| `backend/src/main/java/com/booknest/service/CategoryService.java` | Java Service | Business logic layer validating category names, duplicates, and taxonomy constraints |
-| `backend/src/main/java/com/booknest/controller/CategoryController.java` | Java Controller | REST controller publishing endpoints under `/api/categories/**` |
-| `BookNest/admin/categories.html` | HTML Admin | Administrative category management interface with icon pickers and CRUD forms |
-| `backend/test-category-module.ps1` | PowerShell | Automated module test suite testing category CRUD, GenericDAO, and persistence |
+| `backend/data/orders.txt` | Data / JSON | Plain-text JSON data store containing persisted customer orders and composed line items |
+| `backend/src/main/java/com/booknest/model/Order.java` | Java Model | Root aggregate entity modeling an order (`id`, `customerId`, `customerName`, `email`, `phone`, `items`, `total`, `status`, etc.) |
+| `backend/src/main/java/com/booknest/model/OrderItem.java` | Java Model | Component entity representing an individual book line item within an order |
+| `backend/src/main/java/com/booknest/dao/OrderFileDAO.java` | Java DAO | Plain-text file data access object implementing `GenericDAO<Order, String>` with status updating methods |
+| `backend/src/main/java/com/booknest/service/OrderService.java` | Java Service | Business logic layer orchestrating order validation, total calculations, and book stock decrement |
+| `backend/src/main/java/com/booknest/controller/OrderController.java` | Java Controller | REST controller publishing endpoints under `/api/orders/**` |
+| `BookNest/cart.html` | HTML Frontend | Shopping cart interface showing itemized table, quantity spinners, subtotal, and checkout trigger |
+| `BookNest/checkout.html` | HTML Frontend | Multi-step checkout form collecting delivery details and confirming payment method |
+| `BookNest/orders.html` | HTML Frontend | Customer order history tracking page with status badges and printable order receipts |
+| `BookNest/admin/orders.html` | HTML Admin | Administrative order management dashboard with status dropdowns and order details modals |
+| `backend/test-order-module.ps1` | PowerShell | Automated module test suite testing order placement, status lifecycle, and persistence |
 
 ---
 
 ## 3. Core OOP Concepts Implemented
 
-### A. Encapsulation & Input Invariants
-- `Review.java` encapsulates star rating validation (`rating >= 1 && rating <= 5`) and non-empty comment requirements.
+### A. Encapsulation & Domain Logic Methods
+- `Book.java` encapsulates all book attributes with strict private access.
+- Business logic is directly embedded within the entity:
+  ```java
+  public boolean reduceStock(int count) {
+      if (this.quantity >= count) {
+          this.quantity -= count;
+          return true;
+      }
+      return false;
+  }
+  ```
+- Prevents invalid stock deductions and guarantees object invariant safety.
 
-### B. Mediator / Coordination Pattern
-- `ReviewService` acts as a mediator between reviews and books:
-  When a review is saved or deleted, `ReviewService` computes the arithmetic mean of all ratings for that specific `bookId` and invokes Member 2's `BookFileDAO` to update the book's aggregate rating.
+### B. Interface Implementation (GenericDAO)
+- `BookFileDAO` implements `GenericDAO<Book, String>` created and maintained by Member 3, fulfilling standard persistence contracts (`findAll`, `findById`, `save`, `deleteById`).
+
+### C. Abstraction
+- Controllers interact with `BookService` through high-level abstractions without coupling to file I/O or raw JSON serialization.
+
+---
+
+## 4. REST API Endpoints Owned by Member 2
+
+| Method | Endpoint | Description | Request Body | Response |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/api/books` | List all books in catalog | None | `List<Book>` |
+| `GET` | `/api/books/{id}` | Get book by unique ID | None | `Book` object |
+| `POST` | `/api/books` | Add a new book to catalog | `Book` JSON | Created `Book` |
+| `PUT` | `/api/books/{id}` | Update existing book details/stock | `Book` JSON | Updated `Book` |
+| `DELETE` | `/api/books/{id}` | Remove book from catalog | None | `204 No Content` |
+
+---
+
+## 5. Inter-Member Interfaces & Technical Touchpoints
+
+### Interface with Member 4 (Order Management):
+* **Dependency:** When an order is placed in Member 4's `OrderService.createOrder()`, Member 4 needs to deduct book stock.
+* **Touchpoint:** Member 4 injects `BookFileDAO` (or calls `BookService`), loads the book by ID, executes `book.reduceStock(quantity)`, and saves the updated book entity back to `books.txt`.
+
+### Interface with Member 5 (Review Management):
+* **Dependency:** When a customer posts or removes a review, the book's average star rating and review count must update.
+* **Touchpoint:** Member 5's `ReviewService` queries reviews for `bookId`, calculates the average score, calls `book.setRating(avg)` and `book.setReviewsCount(count)`, and persists the updated `Book` record.
+
+### Interface with Member 3 (Category Management & GenericDAO):
+* `BookFileDAO` implements `GenericDAO<Book, String>`. Member 2 must coordinate with Member 3 for any shared interface changes. Books also reference category names managed by Member 3.
+### A. Composition (Has-A Relationship)
+- An `Order` has a composition relationship with `OrderItem`:
+  ```java
+  public class Order {
+      private List<OrderItem> items = new ArrayList<>();
+      // Lifecycle of OrderItem is bound to the parent Order
+  }
+  ```
+- If an order is canceled or deleted, its associated line items are encapsulated within that order lifecycle.
+
+### B. Inter-Service Collaboration & Encapsulation
+- `OrderService` encapsulates transaction rules: calculating shipping fees (LKR 350 flat rate), validating non-empty item lists, and invoking stock deductions.
 
 ### C. Interface Implementation (GenericDAO)
-- `ReviewFileDAO` implements `GenericDAO<Review, String>` governed by Member 3, fulfilling standard persistence requirements.
+- `OrderFileDAO` implements `GenericDAO<Order, String>` governed by Member 3, fulfilling standard CRUD requirements.
 
 ---
 
 ## 4. Technical Interface with Member 2 (Book Management)
 
 > [!IMPORTANT]
-> **REVIEW-TO-BOOK RATING INTERFACE CONTRACT:**
-> When a customer submits a new review (`POST /api/reviews`) or an admin deletes an inappropriate review:
-> 1. Member 5's `ReviewService` fetches all active reviews for that `bookId`:
+> **ORDER-TO-BOOK INVENTORY INTERFACE CONTRACT:**
+> When an order is placed (`POST /api/orders`):
+> 1. Member 4's `OrderService` coordinates with Member 2's `BookFileDAO`.
+> 2. For each `OrderItem` in the order:
 >    ```java
->    List<Review> bookReviews = reviewDAO.findByBookId(bookId);
->    double average = bookReviews.stream().mapToInt(Review::getRating).average().orElse(0.0);
->    double roundedAvg = Math.round(average * 10.0) / 10.0;
+>    Optional<Book> bookOpt = bookDAO.findById(item.getBookId());
+>    if (bookOpt.isPresent()) {
+>        Book book = bookOpt.get();
+>        boolean stockReduced = book.reduceStock(item.getQuantity());
+>        if (stockReduced) {
+>            bookDAO.save(book);
+>        }
+>    }
 >    ```
-> 2. `ReviewService` then retrieves the target `Book` using Member 2's `BookFileDAO.findById(bookId)`.
-> 3. It sets `book.setRating(roundedAvg)` and `book.setReviewsCount(bookReviews.size())`.
-> 4. It saves the book via `bookDAO.save(book)`.
-> 5. This guarantees real-time rating synchronization across the book catalog.
+> 3. This guarantees that stock decrement logic remains encapsulated inside Member 2's `Book` class, while Member 4 orchestrates the purchasing workflow.
 
 ---
 
-## 5. REST API Endpoints Owned by Member 5
+## 5. REST API Endpoints Owned by Member 4
 
 | Method | Endpoint | Description | Request Body | Response |
 | :--- | :--- | :--- | :--- | :--- |
-| `GET` | `/api/reviews` | List all reviews | None | `List<Review>` |
-| `GET` | `/api/reviews/{id}` | Get review by ID | None | `Review` object |
-| `GET` | `/api/reviews/book/{bookId}` | List reviews for a specific book | None | `List<Review>` |
-| `POST` | `/api/reviews` | Submit new review & update book rating | `Review` JSON | Created `Review` |
-| `DELETE` | `/api/reviews/{id}` | Remove review & recalculate rating | None | `204 No Content` |
-### A. Generic Interface Abstraction (`GenericDAO<T, ID>`)
-Member 3 created the core generic persistence interface:
-```java
-package com.booknest.dao;
-
-import java.util.List;
-import java.util.Optional;
-
-public interface GenericDAO<T, ID> {
-    List<T> findAll();
-    Optional<T> findById(ID id);
-    T save(T entity);
-    void deleteById(ID id);
-    boolean existsById(ID id);
-}
-```
-- **Parametric Polymorphism (Generics):** By parameterizing entity type `T` and identifier type `ID`, `GenericDAO` decouples the persistence contract from specific models.
-- **Contract Enforcement:** Guarantees that all DAO implementations across the team adhere to identical method naming, signatures, and return conventions.
-
-### B. Encapsulation & Entity Integrity
-- `Category.java` encapsulates category identifiers and metadata, preventing invalid null or empty category names through validated setters.
-
----
-
-## 4. Primary Ownership & Strict Governance of `GenericDAO.java`
-
-> [!IMPORTANT]
-> **GOVERNANCE RULE FOR GENERICDAO.JAVA:**
-> Member 3 is the sole primary owner of `backend/src/main/java/com/booknest/dao/GenericDAO.java`.
-> Because this interface is directly implemented by:
-> - Member 1: `UserFileDAO`
-> - Member 2: `BookFileDAO`
-> - Member 3: `CategoryFileDAO`
-> - Member 4: `OrderFileDAO`
-> - Member 5: `ReviewFileDAO`
-> 
-> **Any proposed change, addition, or refactoring of `GenericDAO.java` MUST be submitted to and approved by Member 3.** No member may modify this file unilaterally, as doing so introduces breaking compilation changes across all five modules.
-
----
-
-## 5. REST API Endpoints Owned by Member 3
-
-| Method | Endpoint | Description | Request Body | Response |
-| :--- | :--- | :--- | :--- | :--- |
-| `GET` | `/api/categories` | List all active categories | None | `List<Category>` |
-| `GET` | `/api/categories/{id}` | Get category by ID | None | `Category` object |
-| `POST` | `/api/categories` | Create a new category | `Category` JSON | Created `Category` |
-| `PUT` | `/api/categories/{id}` | Update existing category | `Category` JSON | Updated `Category` |
-| `DELETE` | `/api/categories/{id}` | Delete category | None | `204 No Content` |
+| `GET` | `/api/orders` | List all orders | None | `List<Order>` |
+| `GET` | `/api/orders/{id}` | Get order details by ID | None | `Order` object |
+| `POST` | `/api/orders` | Submit new order & reduce stock | `Order` JSON | Created `Order` |
+| `PATCH` | `/api/orders/{id}/status` | Update order delivery status | `{"status": "Shipped"}` | Updated `Order` |
+| `DELETE` | `/api/orders/{id}` | Remove order record | None | `204 No Content` |
 
 ---
 
@@ -165,10 +174,10 @@ public interface GenericDAO<T, ID> {
 
 Ensure the Spring Boot backend is running, then execute in PowerShell:
 ```powershell
-cd "Member_5_Review_and_Static_Pages/backend"
-powershell -ExecutionPolicy Bypass -File "test-review-module.ps1"
-cd "Member_3_Category_Management/backend"
-powershell -ExecutionPolicy Bypass -File "test-category-module.ps1"
+cd "Member_2_Book_Management/backend"
+powershell -ExecutionPolicy Bypass -File "test-book-module.ps1"
+cd "Member_4_Order_Management/backend"
+powershell -ExecutionPolicy Bypass -File "test-order-module.ps1"
 ```
 
 ---
@@ -308,3 +317,18 @@ powershell -ExecutionPolicy Bypass -File "test-frontend-integration.ps1"
 6. `feat(admin-dashboard): build admin/dashboard.html KPI metrics and quick actions`
 7. `test(integration): create automated test-backend.ps1 and test-frontend-integration.ps1 suites`
 8. `docs(readme): author comprehensive BookNest architecture and coursework guide`
+1. `feat(book): define Book entity with encapsulation and reduceStock domain method`
+2. `feat(book-dao): implement BookFileDAO adhering to GenericDAO with auto-seeding`
+3. `feat(book-service): create BookService for catalog filtering, search, and validation`
+4. `feat(book-controller): build REST controller for /api/books CRUD endpoints`
+5. `feat(book-ui): implement books.html catalog grid with category filters and search`
+6. `feat(book-admin): develop admin/books.html management table with modal CRUD forms`
+7. `test(book): add test-book-module.ps1 automated verification suite`
+1. `feat(order): define Order root entity and OrderItem component entity (Composition)`
+2. `feat(order-dao): implement OrderFileDAO adhering to GenericDAO with status update methods`
+3. `feat(order-service): integrate OrderService with BookFileDAO for inventory decrement`
+4. `feat(order-controller): build REST endpoints for /api/orders and status patch`
+5. `feat(order-ui): create interactive cart.html with live subtotal and shipping calculations`
+6. `feat(order-checkout): develop checkout.html and customer orders.html history views`
+7. `feat(order-admin): build admin/orders.html with order inspection and status lifecycle modals`
+8. `test(order): add test-order-module.ps1 automated verification suite`
