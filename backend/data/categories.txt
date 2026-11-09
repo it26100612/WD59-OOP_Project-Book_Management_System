@@ -1,0 +1,36 @@
+[ {
+  "id" : "CAT-1",
+  "name" : "Fiction",
+  "description" : "Novels, fantasy, literature, and classic storytelling.",
+  "icon" : "bi-book"
+}, {
+  "id" : "CAT-2",
+  "name" : "Science",
+  "description" : "Physics, biology, space exploration, and scientific discovery.",
+  "icon" : "bi-lightbulb"
+}, {
+  "id" : "CAT-3",
+  "name" : "Technology",
+  "description" : "Software engineering, programming languages, and computing.",
+  "icon" : "bi-laptop"
+}, {
+  "id" : "CAT-4",
+  "name" : "Education",
+  "description" : "Academic textbooks, algorithms, mathematics, and student guides.",
+  "icon" : "bi-mortarboard"
+}, {
+  "id" : "CAT-5",
+  "name" : "Mystery",
+  "description" : "Detective fiction, suspense thrillers, crime, and mysteries.",
+  "icon" : "bi-search"
+}, {
+  "id" : "CAT-6",
+  "name" : "Personal Development",
+  "description" : "Productivity, financial intelligence, habit building, and psychology.",
+  "icon" : "bi-graph-up-arrow"
+}, {
+  "id" : "CAT-451",
+  "name" : "Programming",
+  "description" : "Curated bookstore collection.",
+  "icon" : "bi-book"
+} ]
