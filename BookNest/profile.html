@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile — BookNest</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar text-center">
+    <div class="container d-flex justify-content-center align-items-center">
+      
+      <span class="mx-auto mx-md-0">
+        <i class="bi bi-person-badge me-1"></i> User Account &amp; Delivery Preferences
+      </span>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        
+      
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-booknest">
+    <div class="container">
+      <a class="navbar-brand-booknest" href="index.html">
+        <div class="brand-icon-box">
+          <i class="bi bi-book-half"></i>
+        </div>
+        <span>BookNest</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="books.html">Browse Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile.html">My Profile</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="cart.html" class="btn btn-outline-custom btn-sm-custom cart-nav-badge position-relative" title="Shopping Cart">
+            <i class="bi bi-cart3 fs-6"></i>
+            <span class="d-none d-sm-inline ms-1">Cart</span>
+            <span id="nav-cart-count" class="cart-count-pill" style="display:none;">0</span>
+          </a>
+
+          <div id="nav-auth-container">
+            <!-- Dynamic Auth -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+        </ol>
+      </nav>
+
+      <div class="mb-4">
+        <h1 class="h2 mb-1">User Account Profile</h1>
+        <p class="text-muted mb-0">Manage your contact details, delivery address, and account preferences</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Left: Profile Summary Card -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white mb-4">
+            <div class="profile-avatar-circle" id="profile-avatar-initial">
+              A
+            </div>
+            <h4 class="fw-bold mb-1" id="profile-header-name">Amaya Fernando</h4>
+            <p class="text-muted small mb-2" id="profile-header-email">amaya@gmail.com</p>
+            <span class="badge bg-primary-subtle text-primary mx-auto mb-3" id="profile-header-role">Customer</span>
+
+            <div class="row g-2 border-top pt-3 text-start small">
+              <div class="col-6">
+                <span class="text-muted d-block">Total Orders:</span>
+                <strong id="profile-stat-orders" class="fs-6 text-dark">0</strong>
+              </div>
+              <div class="col-6">
+                <span class="text-muted d-block">Total Spent:</span>
+                <strong id="profile-stat-spent" class="fs-6 text-primary">LKR 0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+            <h6 class="fw-bold text-dark mb-2"><i class="bi bi-shield-check text-success me-1"></i> Account Security</h6>
+            <p class="text-muted small mb-3">All transactions and personal records in BookNest are protected under academic demonstration standards.</p>
+            <a href="orders.html" class="btn btn-outline-custom btn-sm w-100">
+              <i class="bi bi-box-seam me-1"></i> View Order History
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Edit Profile Form -->
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <h5 class="fw-bold mb-3 pb-2 border-bottom">Edit Profile Information</h5>
+
+            <form id="profile-form">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="profile-name" class="form-label small fw-bold">Full Name *</label>
+                  <input type="text" id="profile-name" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="profile-email" class="form-label small fw-bold">Email Address *</label>
+                  <input type="email" id="profile-email" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="profile-phone" class="form-label small fw-bold">Phone Number *</label>
+                  <input type="tel" id="profile-phone" class="form-control" placeholder="+94 77 123 4567" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label small fw-bold">Preferred Language</label>
+                  <select class="form-select">
+                    <option value="en" selected>English</option>
+                    <option value="si">Sinhala</option>
+                    <option value="ta">Tamil</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="profile-address" class="form-label small fw-bold">Default Delivery Address *</label>
+                  <textarea id="profile-address" rows="3" class="form-control" placeholder="Street Address, City, Postal Code" required></textarea>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+                <button type="reset" class="btn btn-outline-secondary">
+                  Reset
+                </button>
+                <button type="submit" class="btn btn-primary-custom px-4">
+                  <i class="bi bi-check-lg me-1"></i> Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  
+<!-- BookNest Expanded Footer -->
+<footer class="footer-booknest footer-payment">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Brand and Contact -->
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="brand-icon-box">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <span class="text-white fw-bold fs-4">BookNest</span>
+                </div>
+
+                <p class="footer-description">
+                    The online book store. Order your favorite
+                    books today and enjoy island-wide delivery.
+                </p>
+
+                <p class="footer-contact">
+                    <i class="bi bi-telephone-fill"></i>
+                    +94 78 919 1010
+                </p>
+                <p class="footer-contact">
+                    <i class="bi bi-envelope-fill"></i>
+                    support@booknest.lk
+                </p>
+                <p class="footer-contact">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    BookNest HQ, No. 120 Galle Road,
+                    Colombo 03, Sri Lanka
+                </p>
+
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-6 col-lg-1 col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="books.html">Browse Books</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                    <li><a href="orders.html">My Orders</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="col-6 col-lg-2 col-md-3">
+                <h5>Categories</h5>
+                <ul class="footer-links">
+                    <li><a href="books.html?category=Fiction">Fiction</a></li>
+                    <li><a href="books.html?category=Technology">Technology</a></li>
+                    <li><a href="books.html?category=Science">Science</a></li>
+                    <li><a href="books.html?category=Education">Education</a></li>
+                    <li><a href="books.html?category=Mystery">Mystery</a></li>
+                    <li><a href="books.html?category=Personal%20Development">Personal Development</a></li>
+                </ul>
+            </div>
+
+           <!-- Help and Information -->
+            <div class="col-6 col-lg-2 col-md-3">
+              <h5>Help &amp; Info</h5>
+              <ul class="footer-links">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="orders.html">Track Orders</a></li>
+                <li><a href="delivery.html">Delivery Information</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms &amp; Conditions</a></li>
+              </ul>
+            </div>
+
+
+            <!-- Newsletter and Payment Methods -->
+            <div class="col-lg-4 col-md-6">
+                <h5>NEWSLETTER</h5>
+
+                <form class="footer-newsletter mb-4"
+                      onsubmit="event.preventDefault();">
+                    <input type="email"
+                           placeholder="Your Email Address"
+                           aria-label="Your Email Address"
+                           required>
+                    <button type="submit">SUBMIT</button>
+                </form>
+
+                <h5>SECURED PAYMENTS</h5>
+
+                <div class="payment-logos">
+                    <div class="payment-logo">
+                        <img src="images/payments/helapay.png" alt="HelaPay">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/visa.png" alt="Visa">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/mastercard.png" alt="Mastercard">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/amex.png" alt="American Express">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/discover.png" alt="Discover">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/diners-club.png" alt="Diners Club">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/genie.png" alt="Genie">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/frimi.png" alt="FriMi">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/ezcash.png" alt="eZ Cash">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/mcash.png" alt="mCash">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/sampath-bank.png" alt="Sampath Bank">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/qplus.png" alt="Q+">
+                    </div>
+                    <div class="payment-logo">
+                        <img src="images/payments/ipay.png" alt="iPay">
+                    </div>
+                </div>
+
+                <p class="payment-security">
+                    <i class="bi bi-lock-fill"></i>
+                    Your payment information is secure.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom d-flex flex-column
+                    flex-md-row justify-content-between
+                    align-items-center gap-3">
+
+            <p class="mb-0">
+                &copy; 2026 <strong>BookNest</strong> —
+                Online Bookstore. All rights reserved.
+            </p>
+
+        <div class="footer-bottom-links">
+          
+          <div id="footer-auth-links" style="display: inline-flex; gap: 8px;">
+            <a href="login.html">Sign In</a>
+            <span>|</span>
+            <a href="register.html">Sign Up</a>
+            <span>|</span>
+          </div>
+          
+          <a href="index.html">Home</a>
+        
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Data Engine & App Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

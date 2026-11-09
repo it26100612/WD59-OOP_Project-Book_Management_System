@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management — BookNest Admin</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+          <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1.05rem;">
+            <i class="bi bi-book-half"></i>
+          </div>
+          <div>
+            <div class="fw-bold fs-5 leading-none">BookNest</div>
+            <small class="text-muted" style="font-size: 0.72rem; letter-spacing: 0.05em;">ADMIN PORTAL</small>
+          </div>
+        </a>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="admin-nav-item">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="books.html" class="admin-nav-item active">
+          <i class="bi bi-book"></i>
+          <span>Book Management</span>
+        </a>
+        <a href="users.html" class="admin-nav-item">
+          <i class="bi bi-people"></i>
+          <span>User Management</span>
+        </a>
+        <a href="categories.html" class="admin-nav-item">
+          <i class="bi bi-tags"></i>
+          <span>Category Management</span>
+        </a>
+        <a href="orders.html" class="admin-nav-item">
+          <i class="bi bi-cart-check"></i>
+          <span>Order Management</span>
+        </a>
+        <a href="reviews.html" class="admin-nav-item">
+          <i class="bi bi-star"></i>
+          <span>Review Management</span>
+        </a>
+      </nav>
+
+      <div class="p-3 border-top border-secondary border-opacity-25 mt-auto">
+        <a href="../index.html" class="btn btn-outline-light btn-sm w-100 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-box-arrow-left"></i> Back to Store
+        </a>
+      </div>
+    </aside>
+
+    <!-- Admin Main Content -->
+    <div class="admin-main-content">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="admin-sidebar-toggle" aria-label="Toggle sidebar">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <h4 class="mb-0 fw-bold">Book Management </h4>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge bg-primary-subtle text-primary px-3 py-2" id="admin-books-count">0 Books</span>
+          <button class="btn btn-primary-custom btn-sm" data-bs-toggle="modal" data-bs-target="#addBookModal">
+            <i class="bi bi-plus-lg me-1"></i> Add New Book
+          </button>
+        </div>
+      </header>
+
+      <main class="admin-content-inner">
+        <!-- Controls / Search & Filters Bar -->
+        <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-6 col-lg-5">
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+                <input type="text" id="admin-books-search" class="form-control border-start-0" placeholder="Search by Book ID, Title, Author, or ISBN...">
+              </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <select id="admin-books-category" class="form-select">
+                <option value="All">All Categories</option>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-4 text-md-end">
+              <button class="btn btn-outline-secondary btn-sm" onclick="document.getElementById('admin-books-search').value=''; document.getElementById('admin-books-category').value='All'; initAdminBooksCRUD();">
+                <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Books Table Card -->
+        <div class="table-custom-card">
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Cover</th>
+                  <th>Title &amp; ISBN</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Status / Stock</th>
+                  <th class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-books-table-body">
+                <!-- Rendered by admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="admin-books-empty" class="empty-state-card mt-4" style="display: none;">
+          <i class="bi bi-book text-muted empty-state-icon"></i>
+          <h5 class="fw-bold mb-1">No Books Matching Criteria</h5>
+          <p class="text-muted small mb-0">Try clearing your search query or add a new book to the library.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal 1: Add New Book -->
+  <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="addBookModalLabel"><i class="bi bi-plus-circle me-2 text-primary"></i> Add New Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="addBookForm">
+          <div class="modal-body p-4">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label for="add-book-title" class="form-label small fw-bold">Book Title *</label>
+                <input type="text" id="add-book-title" class="form-control" placeholder="e.g. Clean Code" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="add-book-category" class="form-label small fw-bold">Category *</label>
+                <select id="add-book-category" class="form-select" required></select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="add-book-author" class="form-label small fw-bold">Author(s) *</label>
+                <input type="text" id="add-book-author" class="form-control" placeholder="e.g. Robert C. Martin" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="add-book-isbn" class="form-label small fw-bold">ISBN-13</label>
+                <input type="text" id="add-book-isbn" class="form-control" placeholder="978-0132350884">
+              </div>
+
+              <div class="col-md-4">
+                <label for="add-book-price" class="form-label small fw-bold">Price in LKR *</label>
+                <input type="number" id="add-book-price" class="form-control" min="0" step="50" placeholder="e.g. 6400" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="add-book-quantity" class="form-label small fw-bold">Stock Quantity *</label>
+                <input type="number" id="add-book-quantity" class="form-control" min="0" placeholder="e.g. 25" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="add-book-cover" class="form-label small fw-bold">Cover Image URL</label>
+                <input type="url" id="add-book-cover" class="form-control" placeholder="https://...">
+              </div>
+
+              <div class="col-12">
+                <label for="add-book-description" class="form-label small fw-bold">Book Synopsis / Description</label>
+                <textarea id="add-book-description" rows="3" class="form-control" placeholder="Brief overview of the book's contents..."></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary-custom"><i class="bi bi-check-lg me-1"></i> Save Book</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Edit Book -->
+  <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="editBookModalLabel"><i class="bi bi-pencil-square me-2 text-primary"></i> Edit Book Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="editBookForm">
+          <div class="modal-body p-4">
+            <input type="hidden" id="edit-book-id">
+            <div class="row g-3">
+              <div class="col-md-8">
+                <label for="edit-book-title" class="form-label small fw-bold">Book Title *</label>
+                <input type="text" id="edit-book-title" class="form-control" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="edit-book-category" class="form-label small fw-bold">Category *</label>
+                <select id="edit-book-category" class="form-select" required></select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="edit-book-author" class="form-label small fw-bold">Author(s) *</label>
+                <input type="text" id="edit-book-author" class="form-control" required>
+              </div>
+
+              <div class="col-md-6">
+                <label for="edit-book-isbn" class="form-label small fw-bold">ISBN-13</label>
+                <input type="text" id="edit-book-isbn" class="form-control">
+              </div>
+
+              <div class="col-md-4">
+                <label for="edit-book-price" class="form-label small fw-bold">Price in LKR *</label>
+                <input type="number" id="edit-book-price" class="form-control" min="0" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="edit-book-quantity" class="form-label small fw-bold">Stock Quantity *</label>
+                <input type="number" id="edit-book-quantity" class="form-control" min="0" required>
+              </div>
+
+              <div class="col-md-4">
+                <label for="edit-book-cover" class="form-label small fw-bold">Cover Image URL</label>
+                <input type="url" id="edit-book-cover" class="form-control">
+              </div>
+
+              <div class="col-12">
+                <label for="edit-book-description" class="form-label small fw-bold">Book Synopsis / Description</label>
+                <textarea id="edit-book-description" rows="3" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary-custom"><i class="bi bi-save me-1"></i> Update Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: View Book Details -->
+  <div class="modal fade" id="viewBookModal" tabindex="-1" aria-labelledby="viewBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="viewBookModalLabel"><i class="bi bi-info-circle me-2 text-primary"></i> Book Details Preview</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="viewBookModalBody">
+          <!-- Populated by admin.js -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Data Engine & Admin Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
