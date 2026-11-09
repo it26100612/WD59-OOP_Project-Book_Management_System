@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — BookNest Management</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-white text-decoration-none">
+          <div class="brand-icon-box" style="width: 34px; height: 34px; font-size: 1.05rem;">
+            <i class="bi bi-book-half"></i>
+          </div>
+          <div>
+            <div class="fw-bold fs-5 leading-none">BookNest</div>
+            <small class="text-muted" style="font-size: 0.72rem; letter-spacing: 0.05em;">ADMIN PORTAL</small>
+          </div>
+        </a>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="admin-nav-item active">
+          <i class="bi bi-speedometer2"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="books.html" class="admin-nav-item">
+          <i class="bi bi-book"></i>
+          <span>Book Management</span>
+        </a>
+        <a href="users.html" class="admin-nav-item">
+          <i class="bi bi-people"></i>
+          <span>User Management</span>
+        </a>
+        <a href="categories.html" class="admin-nav-item">
+          <i class="bi bi-tags"></i>
+          <span>Category Management</span>
+        </a>
+        <a href="orders.html" class="admin-nav-item">
+          <i class="bi bi-cart-check"></i>
+          <span>Order Management</span>
+        </a>
+        <a href="reviews.html" class="admin-nav-item">
+          <i class="bi bi-star"></i>
+          <span>Review Management</span>
+        </a>
+      </nav>
+
+      <div class="p-3 border-top border-secondary border-opacity-25 mt-auto">
+        <a href="../index.html" class="btn btn-outline-light btn-sm w-100 d-flex align-items-center justify-content-center gap-2">
+          <i class="bi bi-box-arrow-left"></i> Back to Store
+        </a>
+      </div>
+    </aside>
+
+    <!-- Admin Main Body -->
+    <div class="admin-main-content">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary btn-sm d-lg-none" id="admin-sidebar-toggle" aria-label="Toggle sidebar">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <h4 class="mb-0 fw-bold d-none d-sm-block">System Dashboard</h4>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <!-- Reset Demo Data Helper Button -->
+          <!--<button class="btn btn-outline-warning btn-sm" onclick="handleResetDemoData()" title="Reset all records to initial test data">
+            <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Demo Data
+          </button>-->
+
+          <!-- Admin Avatar Pill -->
+          <div class="d-flex align-items-center gap-2">
+            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 36px; height: 36px;">
+              A
+            </div>
+            <div class="d-none d-md-block text-end">
+              <div class="fw-semibold small leading-tight">Visith Methmin</div>
+              <small class="text-muted" style="font-size: 0.72rem;">System Administrator</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Content -->
+      <main class="admin-content-inner">
+        <!-- SE1020 Project Header Banner -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+              <!--<span class="se1020-badge mb-2">
+                <i class="bi bi-cpu-fill"></i> SE1020 OOP Administrative Console
+              </span>-->
+              <h2 class="h4 fw-bold mb-1">Welcome to BookNest Management System</h2>
+              <p class="text-muted small mb-0">
+                Centralized dashboard to oversee bookstore catalog, users, categories, customer orders, and reviews.
+              </p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="books.html" class="btn btn-primary-custom btn-sm">
+                <i class="bi bi-plus-circle me-1"></i> Add Book
+              </a>
+              <a href="orders.html" class="btn btn-outline-custom btn-sm">
+                <i class="bi bi-box-seam me-1"></i> Manage Orders
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Summary Metric Cards -->
+        <div class="row g-4 mb-4">
+          <!-- Metric 1: Total Books -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="stat-metric-card">
+              <div>
+                <small class="text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Total Books</small>
+                <h3 class="fw-bold mb-0 mt-1" id="metric-total-books">0</h3>
+                <small class="text-success small"><i class="bi bi-arrow-up"></i> Active in catalog</small>
+              </div>
+              <div class="stat-icon-box bg-primary-subtle text-primary">
+                <i class="bi bi-book"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric 2: Total Users -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="stat-metric-card">
+              <div>
+                <small class="text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Registered Users</small>
+                <h3 class="fw-bold mb-0 mt-1" id="metric-total-users">0</h3>
+                <small class="text-info small"><i class="bi bi-people"></i> Customers &amp; staff</small>
+              </div>
+              <div class="stat-icon-box bg-info-subtle text-info">
+                <i class="bi bi-people"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric 3: Total Orders -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="stat-metric-card">
+              <div>
+                <small class="text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Total Orders</small>
+                <h3 class="fw-bold mb-0 mt-1" id="metric-total-orders">0</h3>
+                <small class="text-warning-emphasis small"><i class="bi bi-cart"></i> All transactions</small>
+              </div>
+              <div class="stat-icon-box bg-warning-subtle text-warning-emphasis">
+                <i class="bi bi-bag-check"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric 4: Total Revenue -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="stat-metric-card">
+              <div>
+                <small class="text-muted fw-bold text-uppercase" style="font-size: 0.75rem;">Total Sales</small>
+                <h3 class="fw-bold mb-0 mt-1 text-primary" id="metric-total-sales">LKR 0</h3>
+                <small class="text-success small"><i class="bi bi-graph-up"></i> Revenue generated</small>
+              </div>
+              <div class="stat-icon-box bg-success-subtle text-success">
+                <i class="bi bi-cash-stack"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Status Overview Progress Pills -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+          <h5 class="fw-bold mb-3">Order Status Overview</h5>
+          <div class="row g-3 text-center">
+            <div class="col-6 col-md-3">
+              <div class="p-3 bg-warning bg-opacity-10 rounded-3">
+                <div class="fs-4 fw-bold text-warning-emphasis" id="status-count-pending">0</div>
+                <small class="text-muted fw-semibold">Pending Orders</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 bg-info bg-opacity-10 rounded-3">
+                <div class="fs-4 fw-bold text-info-emphasis" id="status-count-processing">0</div>
+                <small class="text-muted fw-semibold">Processing</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 bg-primary bg-opacity-10 rounded-3">
+                <div class="fs-4 fw-bold text-primary" id="status-count-shipped">0</div>
+                <small class="text-muted fw-semibold">Shipped Out</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="p-3 bg-success bg-opacity-10 rounded-3">
+                <div class="fs-4 fw-bold text-success" id="status-count-delivered">0</div>
+                <small class="text-muted fw-semibold">Delivered</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Column Tables: Recent Orders & Recently Added Books -->
+        <div class="row g-4">
+          <!-- Recent Orders Table -->
+          <div class="col-lg-7">
+            <div class="table-custom-card">
+              <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-cart3 me-1 text-primary"></i> Recent Customer Orders</h6>
+                <a href="orders.html" class="btn btn-outline-custom btn-sm">View All Orders &rarr;</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-recent-orders">
+                    <!-- Injected by admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recently Added Books -->
+          <div class="col-lg-5">
+            <div class="table-custom-card">
+              <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-book me-1 text-primary"></i> Catalog Books</h6>
+                <a href="books.html" class="btn btn-outline-custom btn-sm">Manage Books &rarr;</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Cover</th>
+                      <th>Book</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-recent-books">
+                    <!-- Injected by admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Data Engine & Admin Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

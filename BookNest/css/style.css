@@ -1,0 +1,2515 @@
+/* ==========================================================================
+   BookNest — Online Bookstore Management System
+   SE1020 Object Oriented Programming Project
+   Global Stylesheet (style.css)
+   ========================================================================== */
+
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* --- Root CSS Variables --- */
+:root {
+  --primary-navy: #0c2340;
+  --primary-navy-dark: #071526;
+  --primary-navy-light: #16365c;
+  --accent-blue: #2563eb;
+  --accent-blue-hover: #1d4ed8;
+  --accent-blue-soft: #eff6ff;
+  --accent-blue-border: #bfdbfe;
+  
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-muted: #f1f5f9;
+  
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 14px 28px rgba(12, 35, 64, 0.12);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  
+  --transition-normal: all 0.25s ease-in-out;
+}
+
+/* --- Base Resets & Global Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-navy);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+a:hover {
+  color: var(--accent-blue-hover);
+}
+
+/* ==========================================================================
+   Brand & Navbar Styles
+   ========================================================================== */
+.navbar-booknest {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 0;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.navbar-brand-booknest {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--primary-navy) !important;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+
+.brand-icon-box {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-navy-light) 100%);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 8px rgba(12, 35, 64, 0.2);
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  color: #334155;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-normal);
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--accent-blue);
+  background-color: var(--accent-blue-soft);
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--accent-blue);
+  font-weight: 600;
+  background-color: var(--accent-blue-soft);
+}
+
+.cart-nav-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-count-pill {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  min-width: 18px;
+  text-align: center;
+  line-height: 1;
+}
+
+.btn-nav-primary {
+  background-color: var(--primary-navy);
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1.15rem;
+  transition: var(--transition-normal);
+}
+
+.btn-nav-primary:hover {
+  background-color: var(--primary-navy-light);
+  transform: translateY(-1px);
+}
+
+/* Top Announcement / Quick Bar */
+.top-announcement-bar {
+  background-color: var(--primary-navy);
+  color: #e2e8f0;
+  font-size: 0.82rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-announcement-bar a {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Buttons & UI Elements
+   ========================================================================== */
+.btn-primary-custom {
+  background-color: var(--primary-navy);
+  border: 1px solid var(--primary-navy);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.25rem;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--primary-navy-light);
+  border-color: var(--primary-navy-light);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.btn-accent-custom {
+  background-color: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.25rem;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-accent-custom:hover {
+  background-color: var(--accent-blue-hover);
+  border-color: var(--accent-blue-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-outline-custom {
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  color: var(--primary-navy);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.6rem 1.25rem;
+  transition: var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-outline-custom:hover {
+  background-color: var(--bg-muted);
+  border-color: var(--text-muted);
+  color: var(--primary-navy);
+}
+
+.btn-sm-custom {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+/*.hero-section {
+  background: linear-gradient(135deg, #f0f4f9 0%, #ffffff 50%, #eff6ff 100%);
+  padding: 4.5rem 0 3.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}*/
+.hero-section {
+    background-color: #f4f8ff;
+    background-image: url("../images/booknest-hero-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 4.5rem 0 3.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #dbeafe;
+  color: var(--accent-blue);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 3.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--primary-navy);
+  margin-bottom: 1.25rem;
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 580px;
+}
+
+.hero-search-box {
+  background: #ffffff;
+  padding: 0.45rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  max-width: 540px;
+}
+
+.hero-search-input {
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  color: var(--text-main);
+  background: transparent;
+}
+
+/* ==========================================================================
+   Category Cards
+   ========================================================================== */
+.category-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.1rem;
+  text-align: center;
+  transition: var(--transition-normal);
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blue);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.category-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background-color: var(--accent-blue-soft);
+  color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.55rem;
+  margin: 0 auto 0.9rem;
+  transition: var(--transition-normal);
+}
+
+.category-card:hover .category-icon-wrapper {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+}
+
+.category-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--primary-navy);
+  margin-bottom: 0.25rem;
+}
+
+.category-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Book Cards & Grid
+   ========================================================================== */
+.book-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-blue-border);
+}
+
+.book-cover-container {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.book-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.book-card:hover .book-cover-img {
+  transform: scale(1.04);
+}
+
+.book-badge-ribbon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+
+.book-badge-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.55rem;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.book-card-body {
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.book-card-category {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.book-card-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--primary-navy);
+  margin-bottom: 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.7em;
+}
+
+.book-card-title a {
+  color: var(--primary-navy);
+  text-decoration: none;
+}
+
+.book-card-title a:hover {
+  color: var(--accent-blue);
+}
+
+.book-card-author {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-rating-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.85rem;
+}
+
+.book-rating-score {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.book-rating-count {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+
+.book-card-footer {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.book-price-tag {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+
+.book-actions-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+/* ==========================================================================
+   Book Details Page Specifics
+   ========================================================================== */
+.book-details-cover-wrap {
+  background-color: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 90px;
+}
+
+.book-details-cover-img {
+  max-width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 24px rgba(12, 35, 64, 0.15);
+}
+
+.book-specs-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.spec-item:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.spec-value {
+  color: var(--primary-navy);
+  font-weight: 600;
+}
+
+.quantity-control-group {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.qty-btn {
+  background: #ffffff;
+  border: none;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-navy);
+  font-size: 1rem;
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+
+.qty-btn:hover {
+  background-color: var(--bg-muted);
+}
+
+.qty-input {
+  width: 50px;
+  height: 38px;
+  border: none;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-navy);
+  background: transparent;
+  outline: none;
+}
+
+/* ==========================================================================
+   Shopping Cart & Checkout
+   ========================================================================== */
+.cart-item-row {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.cart-item-row:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.cart-thumb {
+  width: 70px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.order-summary-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 90px;
+}
+
+.checkout-steps-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-navy);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* ==========================================================================
+   Orders & Profile
+   ========================================================================== */
+.order-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.order-card:hover {
+  border-color: var(--accent-blue-border);
+  box-shadow: var(--shadow-md);
+}
+
+.profile-avatar-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--accent-blue) 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Admin Layout & Sidebar
+   ========================================================================== */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 260px;
+  background-color: var(--primary-navy-dark);
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1020;
+  transition: transform 0.3s ease;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-sidebar-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-nav {
+  padding: 1.25rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.93rem;
+  transition: var(--transition-normal);
+}
+
+.admin-nav-item i {
+  font-size: 1.15rem;
+  color: #94a3b8;
+  transition: var(--transition-normal);
+}
+
+.admin-nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.admin-nav-item:hover i {
+  color: #ffffff;
+}
+
+.admin-nav-item.active {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
+.admin-nav-item.active i {
+  color: #ffffff;
+}
+
+.admin-main-content {
+  margin-left: 260px;
+  flex: 1;
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.9rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1010;
+}
+
+.admin-content-inner {
+  padding: 2rem 1.75rem;
+  flex: 1;
+}
+
+.stat-metric-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition-normal);
+}
+
+.stat-metric-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.stat-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+}
+
+/* ==========================================================================
+   Modern Table Styling
+   ========================================================================== */
+.table-custom-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table-custom-card .table {
+  margin-bottom: 0;
+}
+
+.table-custom-card th {
+  background-color: #f8fafc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.9rem 1rem;
+}
+
+.table-custom-card td {
+  padding: 0.95rem 1rem;
+  vertical-align: middle;
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.table-custom-card tr:last-child td {
+  border-bottom: none;
+}
+
+.table-thumb {
+  width: 44px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer-booknest {
+  background-color: var(--primary-navy-dark);
+  color: #94a3b8;
+  padding: 3.5rem 0 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.92rem;
+}
+
+.footer-booknest h5 {
+  color: #ffffff;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-booknest a {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+.footer-booknest a:hover {
+  color: #ffffff;
+  padding-left: 3px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Modals, Alerts, & Helper Badges
+   ========================================================================== */
+.modal-content {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.25rem 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 1rem 1.5rem;
+}
+
+.form-control, .form-select {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  padding: 0.6rem 0.85rem;
+  font-size: 0.92rem;
+  transition: var(--transition-normal);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.empty-state-card {
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  background: #ffffff;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.empty-state-icon {
+  font-size: 3.5rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+/* SE1020 Project Notice Pill */
+.se1020-badge {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid #fde68a;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.show {
+    transform: translateX(0);
+  }
+  .admin-main-content {
+    margin-left: 0;
+  }
+  .book-details-cover-wrap {
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .book-cover-container {
+    height: 220px;
+  }
+  .cart-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cart-thumb {
+    width: 60px;
+    height: 80px;
+  }
+}
+
+```css
+ 
+}
+
+/* Left title */
+.offer-title {
+    min-width: 0;
+}
+
+.offer-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+.offer-title h2 {
+    font-size: clamp(38px, 4vw, 58px);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Middle content */
+.offer-content {
+    min-width: 0;
+}
+
+.save-text {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.discount-number {
+    font-size: clamp(58px, 5vw, 80px);
+    line-height: 1.1;
+    font-weight: 800;
+    color: #fff;
+}
+
+.discount-number span {
+    font-size: 35px;
+    vertical-align: top;
+}
+
+.offer-description {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 12px 0 18px;
+}
+
+.offer-button {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 30px;
+    background: #0c2340;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.offer-button:hover {
+    background: #fff;
+    color: #0c2340;
+}
+
+.limited-text {
+    margin: 18px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Right illustration */
+.offer-decoration {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bundle-books-image {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: 290px;
+    object-fit: contain;
+}
+/* Bundle Offer Banner */
+.bundle-offer-banner {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(135deg, #0c2340 0%, #16365c 100%);
+    color: #ffffff;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.bundle-offer-banner h2,
+.bundle-offer-banner p,
+.bundle-offer-banner .offer-label,
+.bundle-offer-banner .discount-number {
+    color: #ffffff;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .bundle-offer-banner {
+        grid-template-columns: 1fr 1fr;
+        padding: 30px;
+        gap: 24px;
+    }
+
+    .offer-decoration {
+        grid-column: 1 / -1;
+    }
+
+    .bundle-books-image {
+        height: 230px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .bundle-offer-banner {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+        gap: 22px;
+    }
+
+    .offer-label {
+        margin-bottom: 16px;
+    }
+
+    .offer-title h2 {
+        font-size: 46px;
+    }
+
+    .offer-decoration {
+        grid-column: auto;
+    }
+
+    .bundle-books-image {
+        height: 200px;
+    }
+}
+/* Bundle Offer - Increase Width */
+.bundle-offer-banner {
+    width: calc(100% + 200px);
+    max-width: 1500px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BOOKNEST FOOTER - COMPLETE CSS
+   ========================================= */
+
+.footer-booknest.footer-payment {
+    width: 100%;
+    background: linear-gradient(110deg, #071a2d, #102c49);
+    color: #ffffff;
+    padding: 45px 0 22px;
+    margin-top: 0;
+    box-sizing: border-box;
+}
+
+.footer-payment *,
+.footer-payment *::before,
+.footer-payment *::after {
+    box-sizing: border-box;
+}
+
+/* Brand logo */
+.footer-payment .brand-icon-box {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #102c49;
+    border: 1px solid #168cff;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+/* Headings */
+.footer-payment h5 {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 750;
+    margin: 0 0 18px;
+}
+
+/* Description and contact */
+.footer-payment .footer-description {
+    color: #c0d0e3;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.footer-payment .footer-contact {
+    color: #c0d0e3;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.footer-payment .footer-contact i {
+    color: #168cff;
+    margin-right: 8px;
+}
+
+/* Quick links, categories and help */
+.footer-payment .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-payment .footer-links a {
+    color: #b9cbe0;
+    font-size: 13px;
+    line-height: 1.6;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+}
+
+.footer-payment .footer-links a:hover {
+    color: #38a6ff;
+}
+
+/* Social media icons */
+.footer-payment .footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.footer-payment .footer-socials a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 17px;
+    text-decoration: none;
+    background: #18334e;
+    border: 1px solid #344b64;
+    border-radius: 9px;
+    transition: background 0.2s ease;
+}
+
+.footer-payment .footer-socials a:hover {
+    background: #087fea;
+    color: #ffffff;
+}
+
+/* Newsletter form */
+.footer-payment .footer-newsletter {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.footer-payment .footer-newsletter input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: 44px;
+    padding: 10px 15px;
+    border: 1px solid #9aafc5;
+    border-radius: 25px;
+    background: transparent;
+    color: #ffffff;
+    outline: none;
+    font-size: 13px;
+}
+
+.footer-payment .footer-newsletter input::placeholder {
+    color: #91a4ba;
+}
+
+.footer-payment .footer-newsletter input:focus {
+    border-color: #168cff;
+    box-shadow: 0 0 0 2px rgba(22, 140, 255, 0.15);
+}
+
+.footer-payment .footer-newsletter button {
+    min-height: 44px;
+    padding: 0 20px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 25px;
+    background: #168cff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.footer-payment .footer-newsletter button:hover {
+    background: #0872d1;
+}
+
+/* =========================================
+   PAYMENT LOGOS - 13 METHODS
+   ========================================= */
+
+.footer-payment .payment-logos {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.footer-payment .payment-logo {
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e3e8ef;
+    border-radius: 6px;
+}
+
+/* Real logo images */
+.footer-payment .payment-logo img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Use these classes only for text-based placeholders */
+.footer-payment .payment-logo.visa {
+    color: #17479e;
+    font-size: 17px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.footer-payment .payment-logo.mastercard {
+    gap: 0;
+}
+
+.footer-payment .payment-logo.mastercard span {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #eb4335;
+    margin-right: -8px;
+}
+
+.footer-payment .payment-logo.mastercard span + span {
+    background: #f5a623;
+    margin-right: 0;
+}
+
+.footer-payment .payment-logo.amex {
+    background: #1478c9;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.footer-payment .payment-logo.discover {
+    color: #202b3b;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.footer-payment .payment-logo.diners {
+    color: #203c59;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.footer-payment .payment-logo.opay {
+    color: #626262;
+    font-size: 15px;
+}
+
+.footer-payment .opay-symbol {
+    color: #49b95d;
+    font-size: 17px;
+}
+
+.footer-payment .payment-logo.genie {
+    color: #e33446;
+    font-weight: 800;
+}
+
+.footer-payment .payment-logo.genie span {
+    color: #f5a623;
+    font-size: 18px;
+}
+
+.footer-payment .payment-logo.frimi {
+    background: #f45b23;
+    color: #ffffff;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.footer-payment .payment-logo.ecash {
+    background: #ffef20;
+    color: #db263d;
+    font-weight: 800;
+}
+
+.footer-payment .payment-logo.mcash {
+    color: #0879b8;
+    font-weight: 800;
+}
+
+.footer-payment .payment-logo.bank {
+    color: #cc7021;
+    font-size: 10px;
+    border: 2px solid #e7e7e7;
+}
+
+.footer-payment .payment-logo.qplus {
+    color: #a33ec3;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.footer-payment .payment-logo.ipay {
+    background: #eaf8ff;
+    color: #087bb8;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+/* Payment security note */
+.footer-payment .payment-security {
+    color: #93a9bf;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.footer-payment .payment-security i {
+    margin-right: 6px;
+}
+
+/* Bottom copyright bar */
+.footer-payment .footer-bottom {
+    border-top: 1px solid #30465c;
+    margin-top: 32px;
+    padding-top: 20px;
+    color: #b9cbe0;
+    font-size: 12px;
+}
+
+.footer-payment .footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-payment .footer-bottom-links a {
+    color: #b9cbe0;
+    text-decoration: none;
+}
+
+.footer-payment .footer-bottom-links a:hover {
+    color: #38a6ff;
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+   ========================================= */
+
+@media (max-width: 991.98px) {
+    .footer-booknest.footer-payment {
+        padding-top: 35px;
+    }
+
+    .footer-payment .payment-logos {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 575.98px) {
+    .footer-booknest.footer-payment {
+        padding: 30px 0 20px;
+    }
+
+    .footer-payment h5 {
+        font-size: 13px;
+    }
+
+    .footer-payment .footer-newsletter {
+        flex-wrap: wrap;
+    }
+
+    .footer-payment .footer-newsletter input {
+        flex-basis: 100%;
+    }
+
+    .footer-payment .footer-newsletter button {
+        width: 100%;
+    }
+
+    .footer-payment .payment-logos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .footer-payment .payment-logo {
+        height: 40px;
+    }
+
+    .footer-payment .footer-bottom {
+        align-items: flex-start !important;
+        margin-top: 25px;
+        padding-top: 18px;
+    }
+}
+
+/* Reduce footer height without affecting content */
+.footer-booknest.footer-payment {
+    padding-top: 28px;
+    padding-bottom: 14px;
+}
+
+/* Reduce space between footer columns */
+.footer-payment .row.g-4 {
+    --bs-gutter-y: 1.25rem;
+}
+
+/* Reduce heading spacing */
+.footer-payment h5 {
+    margin-bottom: 12px;
+}
+
+/* Reduce spacing between links */
+.footer-payment .footer-links {
+    gap: 8px;
+}
+
+/* Reduce newsletter spacing */
+.footer-payment .footer-newsletter {
+    margin-bottom: 20px !important;
+}
+
+/* Reduce copyright section spacing */
+.footer-payment .footer-bottom {
+    margin-top: 22px;
+    padding-top: 14px;
+}
+
+/* Reduce social icon spacing slightly */
+.footer-payment .footer-socials {
+    gap: 7px;
+    margin-top: 13px;
+}
+
+/* Keep payment logos the same size */
+.footer-payment .payment-logo {
+    height: 40px;
+}
+
+/* Keep mobile layout neat */
+@media (max-width: 575.98px) {
+    .footer-booknest.footer-payment {
+        padding-top: 24px;
+        padding-bottom: 12px;
+    }
+
+    .footer-payment .footer-bottom {
+        margin-top: 18px;
+        padding-top: 12px;
+    }
+}
+
+
+/* Why Shop With BookNest */
+.why-booknest {
+    padding: 55px 0;
+    background: #f4f8fd;
+}
+
+.why-heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.why-label {
+    display: inline-block;
+    color: #1677ff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.why-heading h2 {
+    color: #102b4e;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.why-heading p {
+    color: #64748b;
+    margin-bottom: 0;
+}
+
+.why-card {
+    height: 100%;
+    padding: 28px 18px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e1eaf5;
+    border-radius: 16px;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(16, 43, 78, 0.10);
+}
+
+.why-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: #eaf2ff;
+    color: #1677ff;
+    font-size: 28px;
+}
+
+.why-card h5 {
+    color: #102b4e;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+    .why-booknest {
+        padding: 40px 0;
+    }
+
+    .why-heading h2 {
+        font-size: 25px;
+    }
+
+    .why-card {
+        padding: 24px 16px;
+    }
+}
+
+/* =====================================
+   BookNest Premium Book Card Effects
+   ===================================== */
+
+.book-card {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Card lift + shadow */
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
+    border-color: rgba(13, 110, 253, 0.25);
+}
+
+/* Book cover animation */
+.book-cover-container {
+    overflow: hidden;
+}
+
+.book-cover-img {
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease;
+}
+
+.book-card:hover .book-cover-img {
+    transform: scale(1.06);
+    filter: brightness(1.04);
+}
+
+/* Book title hover */
+.book-card-title a {
+    transition: color 0.25s ease;
+}
+
+.book-card:hover .book-card-title a {
+    color: #0d6efd;
+}
+
+/* Buttons animation */
+.book-card .btn {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.book-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.14);
+}
+
+/* Smooth entrance animation */
+@keyframes bookCardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.book-card {
+    animation: bookCardAppear 0.55s ease both;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .book-card,
+    .book-cover-img,
+    .book-card-title a,
+    .book-card .btn {
+        animation: none;
+        transition: none;
+    }
+
+    .book-card:hover,
+    .book-card .btn:hover,
+    .book-card:hover .book-cover-img {
+        transform: none;
+    }
+}
+
+/* Disable lift effect on touch devices */
+@media (hover: none) {
+    .book-card:hover {
+        transform: none;
+    }
+
+    .book-card:hover .book-cover-img {
+        transform: none;
+    }
+}
+
+/* ==========================================
+   BookNest Extra Premium Card Effects
+   ========================================== */
+
+/* Premium card glow */
+.book-card {
+    position: relative;
+    isolation: isolate;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* Blue glow when hovering */
+.book-card:hover {
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(13, 110, 253, 0.12),
+        0 0 22px rgba(13, 110, 253, 0.08);
+}
+
+/* Book title effect */
+.book-card-title a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.book-card-title a:hover {
+    color: #0d6efd;
+}
+
+/* Add to Cart button */
+.book-card .btn-primary-custom {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.book-card .btn-primary-custom:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 7px 16px rgba(13, 110, 253, 0.25);
+    filter: brightness(1.08);
+}
+
+/* View Details button */
+.book-card .btn-outline-custom:hover {
+    transform: translateY(-2px);
+}
+
+/* Smooth cover transition */
+.book-cover-img {
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Cleaner card body */
+.book-card-body {
+    transition: background-color 0.3s ease;
+}
+
+.book-card:hover .book-card-body {
+    background-color: #fdfdff;
+}
+
+/* Keyboard accessibility */
+.book-card a:focus-visible,
+.book-card button:focus-visible {
+    outline: 3px solid #86b7fe;
+    outline-offset: 3px;
+}
+
+/* Popular Categories - Premium Design */
+
+#popular-categories {
+    background: linear-gradient(
+        135deg,
+        #f4f8ff 0%,
+        #ffffff 55%,
+        #edf5ff 100%
+    );
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+}
+
+/* Section heading */
+#popular-categories h2 {
+    color: #102b4d;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
+
+/* Category cards */
+#popular-categories .category-card {
+    min-height: 168px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 22px 14px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #e0e9f5;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(20, 55, 95, 0.04);
+    text-decoration: none;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+#popular-categories .category-card:hover {
+    transform: translateY(-5px);
+    border-color: #b9d2f4;
+    box-shadow: 0 12px 24px rgba(20, 55, 95, 0.10);
+}
+
+/* Category icon */
+#popular-categories .category-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: #edf4ff;
+    color: #1769e0;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+#popular-categories .category-icon-wrapper i {
+    font-size: 1.45rem;
+}
+
+#popular-categories .category-card:hover
+.category-icon-wrapper {
+    background: #dceaff;
+    transform: scale(1.07);
+}
+
+/* Category name */
+#popular-categories .category-name {
+    color: #102b4d;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Book count */
+#popular-categories .category-count {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #718096;
+    font-size: 0.82rem;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    #popular-categories {
+        padding-top: 34px !important;
+        padding-bottom: 34px !important;
+    }
+
+    #popular-categories .category-card {
+        min-height: 150px;
+        padding: 18px 10px;
+        border-radius: 13px;
+    }
+
+    #popular-categories .category-icon-wrapper {
+        width: 46px;
+        height: 46px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    #popular-categories .category-card,
+    #popular-categories .category-icon-wrapper {
+        transition: none;
+    }
+
+    #popular-categories .category-card:hover,
+    #popular-categories .category-card:hover
+    .category-icon-wrapper {
+        transform: none;
+    }
+}
+
+/* ===================================
+   BookNest - Premium Category Cards
+   =================================== */
+
+#popular-categories .category-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 175px;
+    padding: 24px 14px;
+    background: linear-gradient(145deg, #ffffff, #f7faff);
+    border: 1px solid #e0e9f5;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(16, 43, 77, 0.04);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+/* Soft decorative glow */
+#popular-categories .category-card::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -45px;
+    right: -40px;
+    border-radius: 50%;
+    background: rgba(45, 125, 235, 0.07);
+    transition: transform 0.4s ease;
+    pointer-events: none;
+}
+
+#popular-categories .category-card:hover {
+    transform: translateY(-7px);
+    border-color: #b7d2f5;
+    background: linear-gradient(145deg, #ffffff, #eef5ff);
+    box-shadow: 0 14px 28px rgba(16, 43, 77, 0.11);
+}
+
+#popular-categories .category-card:hover::before {
+    transform: scale(1.8);
+}
+
+/* Icon container */
+#popular-categories .category-icon-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    border-radius: 16px;
+    background: #edf4ff;
+    color: #1769e0;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+#popular-categories .category-icon-wrapper i {
+    font-size: 1.5rem;
+}
+
+#popular-categories .category-card:hover
+.category-icon-wrapper {
+    transform: translateY(-3px) scale(1.08);
+    background: #1769e0;
+    color: #ffffff;
+}
+
+/* Category title */
+#popular-categories .category-name {
+    position: relative;
+    z-index: 1;
+    color: #102b4d;
+    font-size: 0.98rem;
+    font-weight: 750;
+    transition: color 0.25s ease;
+}
+
+#popular-categories .category-card:hover
+.category-name {
+    color: #1769e0;
+}
+
+/* Number of books */
+#popular-categories .category-count {
+    position: relative;
+    z-index: 1;
+    margin-top: 6px;
+    margin-bottom: 0;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #f0f5fc;
+    color: #64748b;
+    font-size: 0.78rem;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+#popular-categories .category-card:hover
+.category-count {
+    background: #dceaff;
+    color: #174d91;
+}
+
+/* Mobile and accessibility */
+@media (max-width: 576px) {
+    #popular-categories .category-card {
+        min-height: 155px;
+        padding: 18px 10px;
+        border-radius: 14px;
+    }
+
+    #popular-categories .category-icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #popular-categories .category-card,
+    #popular-categories .category-card::before,
+    #popular-categories .category-icon-wrapper,
+    #popular-categories .category-name,
+    #popular-categories .category-count {
+        transition: none;
+    }
+
+    #popular-categories .category-card:hover,
+    #popular-categories .category-card:hover
+    .category-icon-wrapper {
+        transform: none;
+    }
+}
+
+/* =================================
+   BookNest Login Page Improvements
+   ================================= */
+
+/* Page background */
+body:has(.login-card) {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(65, 140, 255, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(135deg, #f7faff, #eef4fc);
+}
+
+/* Login card */
+.login-card {
+    border: 1px solid #e6edf6;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 12px 35px rgba(16, 43, 77, 0.08);
+    transition: box-shadow 0.3s ease,
+                transform 0.3s ease;
+}
+
+.login-card:hover {
+    box-shadow: 0 18px 42px rgba(16, 43, 77, 0.12);
+}
+
+/* Input fields */
+.login-card input {
+    border-radius: 9px;
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.login-card input:focus {
+    border-color: #4389ed;
+    box-shadow: 0 0 0 4px rgba(23, 105, 224, 0.10);
+}
+
+/* =====================================
+   BookNest Login - Blue Wave Background
+   ===================================== */
+
+body.login-page {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 5% 15%,
+            rgba(96, 165, 250, 0.28),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 95% 80%,
+            rgba(59, 130, 246, 0.20),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #dcecff 0%,
+            #f8fbff 48%,
+            #dceaff 100%
+        ) !important;
+}
+
+/* Decorative circles and waves */
+body.login-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 12% 25%,
+            rgba(59, 130, 246, 0.12) 0 45px,
+            transparent 47px
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(96, 165, 250, 0.13) 0 65px,
+            transparent 67px
+        ),
+        linear-gradient(
+            145deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.55) 40.2%,
+            transparent 41.5%
+        ),
+        linear-gradient(
+            325deg,
+            transparent 68%,
+            rgba(255, 255, 255, 0.45) 68.2%,
+            transparent 69.5%
+        );
+}
+
+/* Main login card */
+.login-main-card {
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 16px 40px rgba(16, 43, 77, 0.10) !important;
+}
+
+/* Quick-fill card */
+body.login-page .card.bg-white.shadow-sm {
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 24px rgba(16, 43, 77, 0.07) !important;
+}
+
+/* Login button */
+body.login-page .btn-primary-custom {
+    background: linear-gradient(110deg, #102b4d, #1769e0);
+    border: none;
+    color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+body.login-page .btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(23, 105, 224, 0.24);
+}
+
+/* Input focus */
+body.login-page .form-control:focus {
+    border-color: #4389ed;
+    box-shadow: 0 0 0 4px rgba(23, 105, 224, 0.10);
+}
+
+@media (max-width: 576px) {
+    body.login-page {
+        background-attachment: scroll;
+    }
+}
+
+/* =========================================
+   BookNest - Browse Books Filters
+   ========================================= */
+
+.book-filter-card {
+    border: 1px solid #e9edf5 !important;
+    box-shadow: 0 8px 28px rgba(25, 45, 90, 0.07) !important;
+}
+
+.book-filter-card .form-label {
+    color: #344054;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.book-filter-card .form-control,
+.book-filter-card .form-select {
+    min-height: 44px;
+    border: 1px solid #dce2ec;
+    border-radius: 9px;
+    font-size: 0.92rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-filter-card .form-control:focus,
+.book-filter-card .form-select:focus {
+    border-color: #5875dc;
+    box-shadow: 0 0 0 3px rgba(88, 117, 220, 0.12);
+}
+
+.book-filter-card .input-group-text {
+    border-color: #dce2ec;
+    border-radius: 9px 0 0 9px;
+    color: #667085;
+}
+
+.book-filter-card .input-group .form-control {
+    border-radius: 0 9px 9px 0;
+}
+
+.price-filter-panel {
+    padding: 18px;
+    background: #f8faff;
+    border: 1px solid #e4eaf8;
+    border-radius: 12px;
+}
+
+.price-filter-panel h6 {
+    color: #263b70;
+}
+
+.price-filter-panel .form-check-input {
+    cursor: pointer;
+}
+
+.price-filter-panel .form-check-input:checked {
+    background-color: #4566d5;
+    border-color: #4566d5;
+}
+
+#books-apply-filters {
+    min-height: 42px;
+    font-weight: 600;
+    border-radius: 9px;
+}
+
+#books-clear-filters {
+    min-height: 42px;
+    border-radius: 9px;
+    font-weight: 500;
+}
+
+#books-apply-filters:hover,
+#books-clear-filters:hover {
+    transform: translateY(-1px);
+}
+
+#books-apply-filters,
+#books-clear-filters {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 576px) {
+    .book-filter-card {
+        padding: 16px !important;
+    }
+
+    .price-filter-panel {
+        padding: 13px;
+    }
+
+    #books-apply-filters,
+    #books-clear-filters {
+        width: 100%;
+    }
+}
+
+/* BookNest - Horizontal Book Row Layout */
+#featured-books-grid,
+#bestselling-books-grid,
+#browse-books-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+}
+
+/* Remove Bootstrap column spacing */
+#featured-books-grid > *,
+#bestselling-books-grid > *,
+#browse-books-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 !important;
+}
+
+/* Book card */
+.book-card {
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Large book cover */
+.book-cover-container {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.book-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Card details */
+.book-card-body {
+    padding: 12px 4px;
+}
+
+.book-card-title {
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 42px;
+}
+
+.book-card-author {
+    font-size: 12px;
+}
+
+.book-price-tag {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    #featured-books-grid,
+    #bestselling-books-grid,
+    #browse-books-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #featured-books-grid,
+    #bestselling-books-grid,
+    #browse-books-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 14px !important;
+    }
+
+    .book-cover-container {
+        height: 220px;
+    }
+}
+
+
+/* Book covers - fill the entire image area */
+.book-cover-container {
+    width: 100%;
+    height: 280px;
+    padding: 0;
+    overflow: hidden;
+    background: #f1f5f9;
+    display: block;
+}
+
+.book-cover-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center;
+    display: block;
+}
